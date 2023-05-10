@@ -2,14 +2,24 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 import pandas as pd
 import logging
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--fasta_file', type=str, help='Path to the FASTA file')
+parser.add_argument('--snp_file', type=str, help='Path to the mutations file')
+parser.add_argument('--output_file', type=str, help='Path to the output FASTA file')
+parser.add_argument('--num_aa', type=int, help='Number of amino acids to add before and after the SNP')
+
+args = parser.parse_args()
 
 # Set up input and output file names
-fasta_file = "/Users/adams/Projects/300K/A549/fasta/UP000005640_9606.fasta"
-snp_file = "/Users/adams/Projects/300K/A549/fasta/A549_mutations.csv"
-output_file = "/Users/adams/Projects/300K/A549/fasta/MUT_A549_HLAI_UP000005640_9606.fasta"
+fasta_file = args.fasta_file
+snp_file = args.snp_file
+output_file = args.output_file
 
 # Define the number of amino acids to add before and after the SNP
-num_aa = 15
+num_aa = args.num_aa
 
 # Load the FASTA file
 fasta_dict = SeqIO.to_dict(SeqIO.parse(fasta_file, "fasta"))
