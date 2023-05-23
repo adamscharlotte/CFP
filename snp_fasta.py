@@ -41,7 +41,7 @@ for i, row in mutations_df.iterrows():
             break
 
 not_mapped_count = mutations_count - len(mutations_df[["Uniprot ID", "Fasta ID"]])
-logging.info(f"There are {mutations_count} Uniprot IDs that could not be mapped to the fasta")
+logging.info(f"There are {not_mapped_count} Uniprot IDs that could not be mapped to the fasta")
 
 # Remove Proteins not found in the fasta
 mutations_df = mutations_df[~mutations_df["Fasta ID"].isna()]
